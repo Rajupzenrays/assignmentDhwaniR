@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 
-var loginController = require('../controllers/logincontroller');
+var userController = require('../controllers/user');
+
 var stateController = require('../controllers/statecontroller');
 var districtController = require('../controllers/districtcontroller');
 var childController = require('../controllers/childcontroller');
@@ -12,8 +13,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/login',loginController.createLogin);
-router.get('/login',loginController.getLogin);
+router.get('/restrictedPage', userController.restrictedPage);
+router.post('/register', userController.addUser);
+router.get('/login',userController.login);
 
 router.post('/state',stateController.createState);
 router.get('/state',stateController.getState);
